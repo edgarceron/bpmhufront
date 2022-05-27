@@ -1,7 +1,10 @@
-import { Button, FormControl, Stack, TextField, Box } from "@mui/material"
+import { Button, FormControl, Stack, TextField, Box, Fab } from "@mui/material"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { views } from 'views';
 import { 
+    changeCurrentView,
     setBackdropOpen,
     enqueueSnackbar as enqueueSnackbarAction
 } from 'features/frame/mainFrameSlice';
@@ -72,6 +75,17 @@ export const ProjectsForm = () => {
         }
     }
 
+    const fabStyle = {
+        position: 'absolute',
+        right: 50,
+        bottom: 160
+    }
+
+    const handleClickReturn = () => {
+        dispatch(setId(undefined));
+        dispatch(changeCurrentView(views.PROJECTS));
+    }
+
     const createProject = () => {
         dispatch(setBackdropOpen(true));
         return async (dispatch) => {
@@ -105,8 +119,8 @@ export const ProjectsForm = () => {
             .then((result) => {
                 console.log(result);
                 enqueueSnackbar(createEqueue(`Proyecto altualizado correctamente`, 'success'));
-                dispatch(setFormData(updatedFormData(data))),
-                dispatch(setId(result.data.id))
+                dispatch(setFormData(updatedFormData(data)));
+                dispatch(setId(result.data.id));
             })
             .catch((error) => {
                 if (error.response){
@@ -168,6 +182,10 @@ export const ProjectsForm = () => {
                 </FormControl>
             </Stack>
         </Box>
+        <Fab variant="extended" sx={fabStyle} aria-label={'Guardar'} color={'secondary'} onClick={handleClickReturn}>
+            <ArrowBackIcon />
+            Volver
+        </Fab>
     </Box>
     )
 }

@@ -182,6 +182,7 @@ export default function BpmnModeler() {
                 let element = {id: ''};
                 let newSelection = e.newSelection;
                 if(newSelection.length == 1) element = newSelection[0];
+                
                 if(element.id != '') obj.f = (name) => modeling.updateLabel(element, name);
                 dispatch(changeSelectedItem(element.id));
                 changeUpdateSelectedLabel(obj);

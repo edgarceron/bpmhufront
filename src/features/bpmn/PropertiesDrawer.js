@@ -86,7 +86,7 @@ export default function PropertiesDrawer(props) {
                     </Grid>
                     <Grid item xs={12} sx={boxStyleOdd}>
                         <h3 style={titleStyle}>Descripción:</h3>
-                        <span style={valueStyle}>{desc}</span>
+                        <span style={valueStyle}>Como -rol- quiero {name} de tal forma que {desc}</span>
                     </Grid>
                     <Grid item xs={12} sx={boxStyleEven}>
                         <h3 style={titleStyle}>Restricciones:</h3>
